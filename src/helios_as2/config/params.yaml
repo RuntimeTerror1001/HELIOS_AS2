@@ -1,0 +1,19 @@
+people_detector:
+  ros__parameters:
+    use_sim_time: true
+    model_path: /home/redpaladin/Projects/helios_as2/src/helios_as2/detection/yolov8n.pt
+    device: cuda
+    conf: 0.4
+    annotate: true
+    classes:
+    - 0
+survivor_reporter:
+  ros__parameters:
+    use_sim_time: true
+    world_frame: helios/map
+    camera_frame: helios/rgbd_camera/rgbd_camera/camera/optical_frame
+    min_conf: 0.4
+    save_dir: ~/.helios_reports
+mission_patrol:
+  ros__parameters:
+    use_sim_time: true

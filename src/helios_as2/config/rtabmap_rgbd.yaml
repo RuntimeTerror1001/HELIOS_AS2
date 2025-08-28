@@ -1,0 +1,118 @@
+# RTAB-Map RGB-D SLAM configuration for simulation environment
+# Minimal configuration optimized for drone-based mapping
+
+rtabmap:
+  ros__parameters:
+    # Basic frame configuration
+    frame_id: helios/base_link
+    map_frame_id: map
+    odom_frame_id: odom
+    
+    # Subscription configuration
+    subscribe_depth: true
+    subscribe_rgb: true
+    subscribe_odom_info: false
+    subscribe_scan: false
+    subscribe_scan_cloud: false
+    
+    # Synchronization
+    approx_sync: true
+    queue_size: 10
+    qos: 1
+    
+    # Publishing configuration
+    publish_tf: false
+    publish_null_when_lost: false
+    
+    # RTAB-Map parameters
+    Rtabmap/DetectionRate: "1.0"
+    Rtabmap/TimeThr: "0"
+    Rtabmap/ImageBufferSize: "1"
+    Rtabmap/CreateIntermediateNodes: "false"
+    Rtabmap/PublishStats: "true"
+    Rtabmap/PublishLikelihood: "true"
+    Rtabmap/PublishPdf: "true"
+    Rtabmap/PublishLastSignature: "true"
+    
+    # Memory management
+    Mem/RehearsalSimilarity: "0.30"
+    Mem/NotLinkedNodesKept: "false"
+    Mem/STMSize: "30"
+    Mem/LaserScanDownsampleStepSize: "1"
+    
+    # Loop closure
+    Kp/DetectorStrategy: "0"    # SURF
+    Vis/EstimationType: "1"     # 3D->2D (PnP)
+    Vis/MaxDepth: "12.0"
+    Vis/MinInliers: "12"
+    Vis/InlierDistance: "0.02"
+    Vis/RefineIterations: "5"
+    
+    # Grid mapping from depth
+    Grid/FromDepth: "true"
+    Grid/RangeMin: "0.0"
+    Grid/RangeMax: "12.0"
+    Grid/MaxObstacleHeight: "0.0"
+    Grid/MaxGroundHeight: "0.0"
+    Grid/NormalsSegmentation: "true"
+    Grid/ClusterRadius: "0.1"
+    Grid/MinClusterSize: "10"
+    Grid/FlatObstacleDetected: "true"
+    Grid/3D: "false"
+    Grid/GroundIsObstacle: "false"
+    Grid/NoiseFilteringRadius: "0.0"
+    Grid/NoiseFilteringMinNeighbors: "5"
+    Grid/Scan2dUnknownSpaceFilled: "false"
+    Grid/RayTracing: "false"
+    
+    # Odometry reset
+    Odom/ResetCountdown: "1"
+    Odom/Holonomic: "false"
+    
+    # Registration
+    Reg/Strategy: "0"           # Vis
+    Reg/Force3DoF: "false"
+    
+    # Visual registration
+    Vis/CorNNType: "1"          # kNNBruteForce
+    Vis/CorGuessWinSize: "40"
+    Vis/CorNNDR: "0.8"
+    
+    # ICP registration (backup)
+    Icp/VoxelSize: "0.05"
+    Icp/MaxCorrespondenceDistance: "0.1"
+    
+    # Database
+    DbSqlite3/InMemory: "false"
+    DbSqlite3/CacheSize: "10000"
+    
+    # Optimization
+    Optimizer/Strategy: "1"     # g2o
+    Optimizer/Iterations: "10"
+    Optimizer/Epsilon: "0.00001"
+    Optimizer/Robust: "false"
+    
+    # Graph optimization
+    RGBD/OptimizeFromGraphEnd: "false"
+    RGBD/OptimizeMaxError: "1.0"
+    
+    # Feature detection
+    Kp/MaxFeatures: "400"
+    Kp/MaxDepth: "12.0"
+    Kp/MinDepth: "0.0"
+    Kp/RoiRatios: "0.0 0.0 0.0 0.0"
+    
+    # SURF parameters
+    SURF/HessianThreshold: "500"
+    SURF/OctaveLayers: "2"
+    SURF/Octaves: "4"
+    SURF/Upright: "false"
+    SURF/GpuVersion: "false"
+    
+    # Stereo parameters (not used but included for completeness)
+    Stereo/MaxDisparity: "128.0"
+    Stereo/MinDisparity: "1.0"
+    Stereo/OpticalFlow: "true"
+    
+    # Other parameters
+    Bayes/PredictionLC: "0.1 0.36 0.30 0.16 0.062 0.0151 0.00255 0.000324 2.5e-05 1.3e-06 4.8e-08 1.2e-09 1.9e-11 2.2e-13 1.7e-15 8.5e-18 2.9e-20 6.9e-23"

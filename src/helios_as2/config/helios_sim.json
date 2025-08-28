@@ -1,0 +1,15 @@
+{
+  "world_name": "empty",
+  "drones": [
+    {
+      "model_type": "quadrotor_base",
+      "model_name": "helios",
+      "xyz": [0.0, 0.0, 0.3],
+      "rpy": [0.0, 0.0, 0.0],
+      "payload": [
+        { "model_type": "rgbd_camera", "model_name": "rgbd_camera" }
+      ]
+    }
+  ],
+  "objects": []
+}

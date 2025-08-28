@@ -1,0 +1,48 @@
+# NavSat Transform Node configuration for GPS coordinate conversion
+# Converts between GPS (lat/lon) and local coordinate frames
+
+navsat_transform_node:
+  ros__parameters:
+    # Update frequency in Hz
+    frequency: 30.0
+    
+    # Delay in seconds before publishing transforms
+    delay: 0.0
+    
+    # Magnetic declination in radians (set to 0.0 if unknown)
+    magnetic_declination_radians: 0.0
+    
+    # Yaw offset in radians (for sensor mounting orientation)
+    yaw_offset: 0.0
+    
+    # Whether to broadcast the UTM->odom transform
+    broadcast_utm_transform: true
+    
+    # Whether to use odometry yaw for orientation
+    # Set to true when you have good yaw estimates from visual odometry or IMU
+    use_odometry_yaw: true
+    
+    # Whether to zero out altitude in published transforms
+    # Set to false to preserve altitude information
+    zero_altitude: false
+    
+    # Whether to wait for datum (reference point) to be published
+    # Set to false to use the first GPS fix as datum
+    wait_for_datum: false
+    
+    # Frame IDs
+    world_frame: odom
+    base_link_frame: helios/base_link
+    
+    # Publishing configuration
+    publish_filtered_gps: true
+    
+    # Transform tolerance in seconds
+    transform_tolerance: 0.1
+    
+    # Datum parameters (used if wait_for_datum is false)
+    # These will be overridden by the first GPS fix if not specified
+    datum: [0.0, 0.0, 0.0]  # [latitude, longitude, altitude]
+    
+    # Enable/disable publication of various topics
+    publish_gps: true
